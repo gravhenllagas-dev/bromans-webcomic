@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Bromans Combat Game</title>
+<style>
+body { margin:0; background:#111; overflow:hidden; }
+
+#player {
+  width:60px; height:60px;
+  background:blue;
+  position:absolute;
+  bottom:50px; left:50px;
+}
+
+#enemy {
+  width:60px; height:60px;
+  background:red;
+  position:absolute;
+  bottom:50px; right:50px;
+}
+
+#attackBtn {
+  position:fixed;
+  bottom:20px;
+  right:20px;
+  padding:20px;
+  font-size:20px;
+}
+
+#hp {
+  position:fixed;
+  top:10px;
+  left:10px;
+  color:white;
+}
+</style>
+</head>
+
+<body>
+
+<div id="hp">HP: 100</div>
+<div id="player"></div>
+<div id="enemy"></div>
+<button id="attackBtn">ATTACK</button>
+
+<script>
+let playerHP = 100;
+let enemyHP = 100;
+
+let player = document.getElementById("player");
+let enemy = document.getElementById("enemy");
+let hpText = document.getElementById("hp");
+
+document.getElementById("attackBtn").onclick = () => {
+  enemyHP -= 10;
+  enemy.style.transform = "scale(0.9)";
+  setTimeout(()=>enemy.style.transform="scale(1)",100);
+
+  if(enemyHP <= 0){
+    alert("Enemy Defeated!");
+    location.reload();
+  }
+};
+
+// enemy auto attack
+setInterval(()=>{
+  playerHP -= 5;
+  player.style.transform = "scale(0.9)";
+  setTimeout(()=>player.style.transform="scale(1)",100);
+
+  hpText.innerText = "HP: " + playerHP;
+
+  if(playerHP <= 0){
+    alert("Game Over!");
+    location.reload();
+  }
+}, 2000);
+</script>
+
+</body>
+</html>
