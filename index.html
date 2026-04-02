@@ -79,3 +79,13 @@ setInterval(()=>{
 
 </body>
 </html>
+
+document.addEventListener("keydown", (e)=>{
+    let step = 10; // pixels to move
+    let playerRect = player.getBoundingClientRect();
+
+    if(e.key === "w" && playerRect.top > 0) player.style.bottom = (parseInt(player.style.bottom)+step)+"px";
+    if(e.key === "s" && playerRect.bottom < window.innerHeight) player.style.bottom = (parseInt(player.style.bottom)-step)+"px";
+    if(e.key === "a" && playerRect.left > 0) player.style.left = (parseInt(player.style.left)-step)+"px";
+    if(e.key === "d" && playerRect.right < window.innerWidth) player.style.left = (parseInt(player.style.left)+step)+"px";
+});
